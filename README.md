@@ -3,10 +3,13 @@ installing opencv 4.7.0 on ubuntu 22.04
 
 
 
-#!/bin/bash
+#### !/bin/bash
+```
 set -e
+```
 
-# install dependencieds
+#### install dependencieds
+```
 sudo apt-get install -y build-essential cmake git unzip pkg-config zlib1g-dev
 sudo apt-get install -y libjpeg-dev libjpeg8-dev libjpeg-turbo8-dev libpng-dev libtiff-dev
 sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libglew-dev
@@ -23,33 +26,45 @@ sudo apt-get install -y libopenblas-dev libatlas-base-dev libblas-dev
 sudo apt-get install -y liblapack-dev liblapacke-dev libeigen3-dev gfortran
 sudo apt-get install -y libhdf5-dev protobuf-compiler
 sudo apt-get install -y libprotobuf-dev libgoogle-glog-dev libgflags-dev
+```
 
-# remove old versions or previous builds 
+#### remove old versions or previous builds 
+```
 cd ~
 sudo rm -rf opencv*
+```
 
-# download the relevant version
+#### download the relevant version
+```
 wget -O opencv.zip https://github.com/opencv/opencv/archive/4.7.0.zip 
 wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.7.0.zip
+```
 
-# unpack
+#### unpack
+```
 unzip opencv.zip 
 unzip opencv_contrib.zip 
-
-# make it easier for later
+```
+#### rename to make it easier for later
+```
 mv opencv-4.7.0 opencv
 mv opencv_contrib-4.7.0 opencv_contrib
-
-# clean up the zip files
+```
+#### clean up the zip files
+```
 rm opencv.zip
 rm opencv_contrib.zip
+```
 
-# set install dir
+#### set install dir
+```
 cd ~/opencv
 mkdir build
 cd build
+```
 
-# run cmake
+#### run cmake
+```
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_INSTALL_PREFIX=/usr/ \
 -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
@@ -74,11 +89,15 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D INSTALL_PYTHON_EXAMPLES=OFF \
 -D PYTHON3_PACKAGES_PATH=/usr/lib/python3/dist-packages \
 -D OPENCV_GENERATE_PKGCONFIG=ON \
--D BUILD_EXAMPLES=OFF ..
+-D BUILD_EXAMPLES=OFF .. 
+```
 
-# run make with number of cores
+#### run make with number of cores
+```
 make -j$(nproc)
+```
 
-# install opencv
+#### install opencv
+```
 sudo make install
-
+```
